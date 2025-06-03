@@ -1,25 +1,28 @@
+const { SerialPort, ReadlineParser } = require('serialport');
 const WebSocket = require('ws');
-// NO usamos serialport aquí porque no hay Arduino
+
+const port = new SerialPort({ path: 'COM4', baudRate: 9600 });
+
+// Crea un parser para leer línea por línea
+const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
 
 const wss = new WebSocket.Server({ port: 3001 });
 
-wss.on('connection', function connection(ws) {
-  console.log("Cliente conectado a WebSocket");
+wss.on('connection', (ws) => {
+  ws.on('message', (data) => {
+    const mensaje = data.toString();
+    port.write(mensaje + "\n");
+    console.log("Enviado a Arduino:", mensaje);
+  });
 
-  ws.on('message', function incoming(message) {
-    console.log('Simulando: recibido', message.toString());
-    // Simula progreso
-    let progress = 0;
-    const interval = setInterval(() => {
-      if (progress > 100) {
-        ws.send("TERMINADO");
-        clearInterval(interval);
-      } else {
-        ws.send(`PROGRESO:${progress}`);
-        progress += 10;
-      }
-    }, 300);
+  // Lee línea completa del Arduino
+  parser.on('data', (linea) => {
+    console.log("Arduino dice:", linea);
+    ws.send(linea);
   });
 });
 
-console.log("WebSocket server SIMULADO escuchando en ws://localhost:3001");
+console.log("WebSocket server escuchando en ws://localhost:3001");
+
+
+
