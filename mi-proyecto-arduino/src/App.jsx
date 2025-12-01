@@ -136,22 +136,18 @@ function App() {
   });
 
   return (
-    <div style={{ minHeight: "100vh", width: "100vw", display: "flex" }}>
+    <div className="app-root">
       {/* Panel izquierdo */}
-      <div
+      <div className="left-panel"
         style={{
-          width: "410px",
-          minWidth: "300px",
-          height: "100vh",
           background: "#fff",
-          borderRight: "1.5px solid #e7ecf2",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           padding: "32px 22px 0 22px",
         }}
       >
-        <div style={{
+        <div className="app-title" style={{
           fontWeight: 900,
           fontSize: "2.6rem",
           color: "#166aaa",
@@ -178,7 +174,7 @@ function App() {
           <BoxArrowUpRight style={{ opacity: 0.8, fontSize: 16 }} /> {status}
         </div>
 
-        <div style={{ width: "100%", marginBottom: 18, display: "flex", justifyContent: "center" }}>
+        <div className="exercise-list" style={{ width: "100%", marginBottom: 18, display: "flex", justifyContent: "center" }}>
           {ejercicios.map((ej) => (
             <div
               key={ej.valor}
@@ -276,10 +272,9 @@ function App() {
       </div>
 
       {/* Panel derecho - GIF, barra y ahora instrucciones horizontales */}
-<div
+<div className="right-panel"
   style={{
     flexGrow: 1,
-    minHeight: "100vh",
     background: "#f3f8fb",
     display: "flex",
     flexDirection: "column",
@@ -288,7 +283,7 @@ function App() {
     padding: "20px 0",
   }}
 >
-  <div style={{
+  <div className="right-card" style={{
     width: "100%",
     maxWidth: 480,
     display: "flex",
@@ -299,7 +294,7 @@ function App() {
     boxShadow: "0 6px 40px #aee4ff29",
     padding: "22px 22px 18px 22px",
   }}>
-    <img
+    <img className="exercise-gif"
       src={selected.gif}
       alt="Ejercicio en progreso"
       style={{
@@ -346,7 +341,7 @@ function App() {
       {status}
     </div>
     {/* INSTRUCCIONES EN FRANJA HORIZONTAL */}
-    <div
+    <div className="instructions"
       style={{
         width: "100%",
         background: "#eafdff",

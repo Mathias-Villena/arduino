@@ -43,3 +43,94 @@
 .transition-ejercicio {
   transition: all .18s cubic-bezier(.42,2.16,.51,.97);
 }
+
+/* App layout classes for responsive behavior */
+.app-root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.left-panel {
+  width: 410px;
+  min-width: 300px;
+  height: 100vh;
+  border-right: 1.5px solid #e7ecf2;
+  box-sizing: border-box;
+}
+
+.app-title {
+  word-break: break-word;
+}
+
+.exercise-list {
+  gap: 8px;
+  padding: 0 6px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.right-panel {
+  flex-grow: 1;
+  min-height: 100vh;
+  background: #f3f8fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-card {
+  width: 100%;
+  max-width: 480px;
+}
+
+.exercise-gif {
+  width: 100%;
+  height: auto;
+  max-height: 42vh;
+  object-fit: cover;
+}
+
+.instructions {
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 900px) {
+  .left-panel { width: 360px; }
+}
+
+@media (max-width: 768px) {
+  .app-root { flex-direction: column; }
+  .left-panel {
+    width: 100% !important;
+    min-width: auto !important;
+    height: auto !important;
+    border-right: none !important;
+    border-bottom: 1.5px solid #e7ecf2 !important;
+    padding: 18px !important;
+    align-items: stretch !important;
+  }
+  .right-panel {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 12px 10px !important;
+  }
+  .right-card {
+    max-width: 100%;
+    box-shadow: none;
+    padding: 14px !important;
+  }
+  .exercise-list { justify-content: flex-start; }
+  .instructions { font-size: 0.92rem; padding: 10px; }
+  .left-panel .w-100 { max-width: 100% !important; }
+}
+
+@media (max-width: 420px) {
+  .app-title { font-size: 1.6rem !important; }
+  .left-panel { padding: 14px !important; }
+  .instructions { font-size: 0.9rem; gap: 6px; }
+}

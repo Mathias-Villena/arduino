@@ -13,6 +13,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global box sizing and fluid typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Fluid base font size for better scaling on mobile */
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -28,6 +38,18 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+/* Utility: make form controls and buttons responsive */
+input, select, textarea, button {
+  font-family: inherit;
+}
+
+@media (max-width: 768px) {
+  :root {
+    /* slightly smaller base on small screens */
+    font-size: clamp(13px, 2.5vw, 16px);
+  }
 }
 
 h1 {
