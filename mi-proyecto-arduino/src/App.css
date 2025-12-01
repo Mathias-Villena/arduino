@@ -1,7 +1,8 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* Allow full-bleed layout by default; padding keeps some spacing */
+  max-width: 100%;
+  margin: 0;
+  padding: 1.25rem;
   text-align: center;
 }
 
@@ -133,4 +134,17 @@
   .app-title { font-size: 1.6rem !important; }
   .left-panel { padding: 14px !important; }
   .instructions { font-size: 0.9rem; gap: 6px; }
+}
+
+/* Desktop: make right card expand to fill available space */
+@media (min-width: 992px) {
+  .app-root { padding: 0; }
+  .left-panel { width: 410px; min-width: 410px; }
+  .right-panel { padding: 28px; }
+  .right-card {
+    max-width: none;
+    width: calc(100% - 410px);
+    margin-left: 0;
+  }
+  .exercise-gif { max-height: 56vh; }
 }
