@@ -51,10 +51,12 @@
   width: 100%;
   display: flex;
   align-items: stretch;
+  justify-content: flex-start; /* ensure items start at left */
+  text-align: left; /* avoid centering children */
 }
 
 .left-panel {
-  width: 410px;
+  flex: 0 0 410px; /* fixed column on the left */
   min-width: 300px;
   height: 100vh;
   border-right: 1.5px solid #e7ecf2;
@@ -73,17 +75,21 @@
 }
 
 .right-panel {
-  flex-grow: 1;
+  flex: 1 1 auto; /* take remaining space */
   min-height: 100vh;
   background: #f3f8fb;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 28px;
 }
 
 .right-card {
   width: 100%;
-  max-width: 480px;
+  max-width: none; /* allow full width inside right-panel */
+  margin: 0;
+  padding: 22px;
+  box-sizing: border-box;
 }
 
 .exercise-gif {
@@ -139,12 +145,13 @@
 /* Desktop: make right card expand to fill available space */
 @media (min-width: 992px) {
   .app-root { padding: 0; }
-  .left-panel { width: 410px; min-width: 410px; }
+  .left-panel { width: 410px; min-width: 360px; }
   .right-panel { padding: 28px; }
   .right-card {
-    max-width: none;
-    width: calc(100% - 410px);
-    margin-left: 0;
+    /* fill available space inside right-panel but keep a large max */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 32px;
   }
   .exercise-gif { max-height: 56vh; }
 }
